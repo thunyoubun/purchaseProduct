@@ -17,7 +17,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     /**
      * Home Routes
      */
-    Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('/', 'ProductController@index')->name('home.index');
     Route::group(['middleware' => ['guest']], function () {
         /**
          * Register Routes
@@ -35,5 +35,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
          * Logout Routes
          */
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+        Route::get('items/{id}', 'ProductController@item')->name('item');
+        Route::get('/cart', 'ProductController@cart')->name('cart');
+        Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('add.to.cart');
+        Route::get('/remove-to-cart/{id}', 'ProductController@addToCart')->name('remove.to.cart');
+        Route::delete('/remove-from-cart/{id}', 'ProductController@remove')->name('remove.from.cart');
     });
 });

@@ -36,12 +36,17 @@
 
 <body>
     @include('layouts.partials.navbar')
-    <main class="container">
+
+    <main class="">
+
         @if(session('success'))
         <div class="alert alert-success ">{{session('success')}}</div>
         @endif
         @yield('content')
+
     </main>
+
+
     <script src="{!! url('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
 </body>
 

@@ -123,9 +123,6 @@ input:valid+label {
                                                 Up</u></a></p>
 
                                 </div>
-
-
-
                             </div>
                         </div>
                     </div>
