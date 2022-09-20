@@ -173,7 +173,7 @@
                         <div class=" position-relative h-100  " style="width: 202px;">
                             <div class="w-100">
                                 <div class="d-block ">
-                                    <a href="" class=" text-decoration-none text-dark text-center alight-cnter " alt="">
+                                    <div class=" text-decoration-none text-dark text-center alight-cnter " alt="">
                                         <span class=" fav rounded-circle shadow"><svg xmlns="http://www.w3.org/2000/svg"
                                                 width="23" height="23" fill="currentColor" class="bi bi-heart-fill"
                                                 viewBox="0 0 16 16">
@@ -182,7 +182,7 @@
                                             </svg>
                                         </span>
                                         <div>
-                                            <a href="{{url('item/{$id}')}}}">
+                                            <a href="{{url('item/{$id}')}}">
                                                 <img src='{{ $product->image}}' class="items border  m-3"
                                                     style="width:143px; height:202px">
                                             </a>
@@ -190,7 +190,7 @@
 
                                         </div>
 
-                                    </a>
+                                    </div>
                                     <div class="d-block mt-1 mb-1   text-left" style="max-width: 100%; height:60px">
                                         <a href=""
                                             class=" d-block text-decoration-none  text-truncate text-wrap text-center lh-sm text-center w-100 overflow-hidden  ">

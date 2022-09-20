@@ -23,11 +23,12 @@ class ProductController extends Controller
         return view('home.index', compact('products', 'carts'));
     }
 
-    public function item()
+    public function item($id)
     {
         $products = DB::select('select * from products where id = 5');
+        $cart = Cart::findOrFail($id);
         $carts = Cart::all();
-        return view('item', compact('products', 'carts'));
+        return view('item/{}', compact('products', 'carts'));
     }
 
     public function cart()
