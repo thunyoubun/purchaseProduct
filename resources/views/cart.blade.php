@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="d-block m-2  " style="width:10% ;">
-                    <div class="d-flex justify-content-center align-items-center ">
+                    <div class="d-flex justify-content-center x ">
                         <p class="fs-5 fw-bold text-primary">฿{{ $cart->price }}</p>
                     </div>
                     <div class="d-flex justify-content-center align-items-center  ">

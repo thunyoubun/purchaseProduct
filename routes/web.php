@@ -35,7 +35,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
          * Logout Routes
          */
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
-        Route::get('items/{id}', 'ProductController@item')->name('item');
+        Route::get('/items/{id}', 'ProductController@item')->name('item');
         Route::get('/cart', 'ProductController@cart')->name('cart');
         Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('add.to.cart');
         Route::get('/remove-to-cart/{id}', 'ProductController@addToCart')->name('remove.to.cart');

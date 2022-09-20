@@ -4,11 +4,10 @@
 
 <div class="vh-100 bg-white">
     <div class="container p-4 bg-light">
-
         @foreach($products as $items)
         <div class="d-flex justify-content-center ">
             <div class=" border border-5 shadow-lg d-flex justify-content-center" style="width:50% ;">
-                <img src="{{ $items->image }}" style="width:143px; height:202px">
+                <img src="{{ $items->image }}" class="img-responsive m-2 rounded-2" />
             </div>
             <div class="ml-4 border border-4 rounded-4 bg-white shadow-lg  p-4" style="width: 50%;">
                 <div class="container ">
@@ -53,5 +52,6 @@
         @endforeach
 
     </div>
+
 </div>
 @endsection

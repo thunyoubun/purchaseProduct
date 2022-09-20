@@ -182,8 +182,12 @@
                                             </svg>
                                         </span>
                                         <div>
-                                            <img src='{{ $product->image}}' class="items border  m-3"
-                                                style="width:143px; height:202px">
+                                            <a href="{{url('item/{$id}')}}}">
+                                                <img src='{{ $product->image}}' class="items border  m-3"
+                                                    style="width:143px; height:202px">
+                                            </a>
+
+
                                         </div>
 
                                     </a>
