@@ -44,6 +44,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
         Route::get('/myaccount', 'HomeController@myaccount')->name('myaccount');
 
+        /*dashboard */
         Route::get('add-product', [ProductController::class, 'create']);
         Route::post('add-product', [ProductController::class, 'store']);
         Route::get('edit-product/{id}', [ProductController::class, 'edit']);
@@ -54,6 +55,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('delete-user/{id}', [AdminController::class, 'destroy']);
         Route::put('update-user/{id}', [AdminController::class, 'update']);
 
+        /*product*/
         Route::get('/add-item/{id}', 'ProductController@addcountCart')->name('add.item');
         Route::get('/item/{id}', 'ProductController@item')->name('item');
         Route::get('/cart', 'ProductController@cart')->name('cart');

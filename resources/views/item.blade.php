@@ -3,16 +3,17 @@
 
 
 <div class="vh-100 bg-white">
-    <div class="container p-4 bg-light">
+    <div class="container p-4 bg-light h-100">
 
-        <div class="d-flex justify-content-center ">
-            <div class=" border border-5 shadow-lg d-flex justify-content-center" style="width:50% ;">
-                <img src="{{$products->image}}" class="img-responsive m-2 rounded-2" />
+        <div class="d-flex justify-content-center flex-xl-row flex-column ">
+            <div class=" border border-5 shadow-lg d-flex justify-content-center m-auto">
+                <img src="{{ asset('assets/products') }}/{{$products->image}}" class="img-responsive m-2 "
+                    style=" max-height:500px; max-width:400px" />
             </div>
-            <div class="ml-4 border border-4 rounded-4 bg-white shadow-lg  p-4" style="width: 50%;">
+            <div class="h-100  border border-4  bg-white shadow-lg  p-4 " style="max-width: 700px;">
                 <div class="container ">
-                    <h4>{{$products->name}}</h4>
-                    <p class="text-primary font-weight-bold">฿{{$products->price}}</p>
+                    <h4 class="mb-4">{{$products->name}}</h4>
+                    <p class="text-primary fs-4 font-weight-bold">฿{{$products->price}}</p>
                     <div class="d-flex justify-content-start align-items-center">
                         <p class="fs-6 m-2">จำนวน</p>
                         <button
@@ -40,7 +41,7 @@
                                         <path
                                             d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                                     </svg>
-                                    <span class="m-1">Add -฿{{ $products->price }}</spaa>
+                                    <span class="m-1">Add - ฿{{ $products->price }}</spaa>
                                 </div>
 
                             </button>

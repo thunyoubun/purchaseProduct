@@ -71,7 +71,7 @@
                                                 เบอร์โทร :
                                             </label>
                                             <span class="fs-6 font-weight-bold"
-                                                style="min-width: 86px; line-height: 20px;">{{$users->id}}</span>
+                                                style="min-width: 86px; line-height: 20px;">{{$users->phone}}</span>
                                         </div>
                                         <div class="d-flex ">
                                             <label class="fs-6 text-secondary"

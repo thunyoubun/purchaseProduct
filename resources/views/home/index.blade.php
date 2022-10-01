@@ -103,9 +103,10 @@
                 <div id="carouselExampleFade1" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner  d-flex">
                         <!--1-->
-                        <div class="carousel-item active d-flex justify-content-center text-center bg-white  ">
-                            <a href="" class=" text-decoration-none text-dark d-block " alt="">
-                                <img src="/assets/hits/_LN_Ousama_KV_1_.jpg" class="items border rounded-circle m-3">
+                        <div class="carousel-item active d-flex justify-content-center text-center bg-white gap-3  ">
+                            <a href="" class=" text-decoration-none text-dark " alt="">
+                                <img src="/assets/hits/_LN_Ousama_KV_1_.jpg"
+                                    class="d-block items border rounded-circle m-3">
                                 <p class="text-wrap font-weight-bold" style="width:200px ;">สาบานรักราชันจอมเวท - Ousama
                                     no Propose</p>
                             </a>
@@ -225,8 +226,8 @@
                                             </a>
                                             <div>
                                                 <a href="{{route('item', $product->id)}}">
-                                                    <img src='{{ $product->image}}' class="items border  m-3"
-                                                        style="width:143px; height:202px">
+                                                    <img src="{{ asset('assets/products') }}/{{$product->image}}"
+                                                        class="items border  m-3" style="width:143px; height:202px">
                                                 </a>
                                             </div>
                                         </div>
@@ -234,9 +235,7 @@
                                             <a href="{{route('item', $product->id)}}" class=" d-block text-decoration-none text-truncate text-wrap text-center
                                             lh-sm text-center w-100 overflow-hidden ">
                                                 <p class="tile-name">
-
                                                     {{ $product->name }}
-
                                                 </p>
                                             </a>
 
@@ -280,8 +279,8 @@
                                         </span>
                                         <div>
                                             <a href="{{route('item', $product->id)}}">
-                                                <img src='{{ $product->image}}' class="items border  m-3"
-                                                    style="width:143px; height:202px">
+                                                <img src="{{ asset('assets/products') }}/{{$product->image}}"
+                                                    class="items border  m-3" style="width:143px; height:202px">
                                             </a>
                                         </div>
 
@@ -290,7 +289,6 @@
                                         <a href="{{route('item', $product->id)}}"
                                             class=" d-block text-decoration-none  text-truncate text-wrap text-center lh-sm text-center w-100 overflow-hidden  ">
                                             <p class="tile-name">
-                                                {{$total}}
                                                 {{ $product->name }}
                                             </p>
                                         </a>
@@ -298,7 +296,7 @@
                                     </div>
                                 </div>
                                 <div class="d-block bottom-0 ">
-                                    <a href="{{ route('add.to.cart', $product->id) }}">
+                                    <a href="{{ route('add.to.cart',$product->id) }}">
                                         <button type="button" class="btn btn-outline-primary " style=" width:100%;">
                                             <div class="d-flex align-items-center justify-content-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -379,8 +377,8 @@
                                         </span>
                                         <div>
                                             <a href="{{route('item', $product->id)}}">
-                                                <img src='{{ $product->image}}' class="items border  m-3"
-                                                    style="width:143px; height:202px">
+                                                <img src="{{ asset('assets/products') }}/{{$product->image}}"
+                                                    class="items border  m-3" style="width:143px; height:202px">
                                             </a>
                                         </div>
                                     </div>
@@ -434,8 +432,8 @@
                                     </span>
                                     <div>
                                         <a href="{{route('item', $product->id)}}">
-                                            <img src='{{ $product->image}}' class="items border  m-3"
-                                                style="width:143px; height:202px">
+                                            <img src="{{ asset('assets/products') }}/{{$product->image}}"
+                                                class="items border  m-3" style="width:143px; height:202px">
                                         </a>
                                     </div>
 

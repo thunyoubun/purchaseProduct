@@ -27,8 +27,8 @@ class ProductController extends Controller
 
     public function item($id)
     {
-        $idx = Product::find($id);
-        $products = Product::where('id', '=', $idx->id)->first();
+        $products = Product::find($id);
+        /*     $products = Product::where('id', '=', $idx->id)->first(); */
         $carts = Cart::all();
         return view('item', compact('products', 'carts'));
     }
@@ -55,7 +55,7 @@ class ProductController extends Controller
     public function addToCart($id)
     {
         $users = User::all();
-        $product = Product::findOrFail($id);
+        $product = Product::find($id);
         $cart = Cart::where('name', '=', $product->name)->first();
         DB::transaction(function () use ($product, $cart, $users) {
             if ($cart != null) {
@@ -63,7 +63,6 @@ class ProductController extends Controller
                 $cart->save();
             } else {
                 $cart = new Cart();
-                $cart->user_id = $users->id;
                 $cart->name = $product->name;
                 $cart->quantity = 1;
                 $cart->price = $product->price;
@@ -177,8 +176,6 @@ class ProductController extends Controller
         $product->price = $request->input('price');
         $product->stock = $request->input('stock');
 
-
-
         if ($request->hasFile('image')) {
             $destination = 'assets/products/' . $product->image;
             if (File::exitsts()) {
@@ -187,7 +184,7 @@ class ProductController extends Controller
             $file = $request->file('image');
             $extenstion = $file->getClientOriginalName();
             $file->move(public_path() . 'assets/products/', $extenstion);
-            $product->image = $extenstion;
+            $product->image = $file;
         }
         $product->save();
         return redirect()->route('dashboard')->with('success', 'Product updated successfully');

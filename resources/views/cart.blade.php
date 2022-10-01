@@ -13,7 +13,8 @@
             @php $total += $cart->price*$cart->quantity @endphp
             <div class="d-flex justify-content-between">
                 <div class="d-flex">
-                    <img src="{{ $cart->image }}" width="143" height="200" class="img-responsive m-2 rounded-2" />
+                    <img src="{{ asset('assets/products') }}/{{$cart->image}}" width="143" height="200"
+                        class="img-responsive m-2 rounded-2" />
                     <div class="d-block m-2  position-relative" style="width:50% ;">
                         <p class="fs-6  fw-bold">{{ $cart->name }}</p>
                         <button

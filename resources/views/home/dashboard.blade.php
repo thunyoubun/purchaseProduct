@@ -43,7 +43,8 @@
                                     <td>{{ $item->id }}</td>
                                     <td style="max-width:200px ;">{{ $item->name }}</td>
                                     <td>{{ $item->description }}</td>
-                                    <td><img src="{{ $item->image }}" style="max-width:100px ; max-height:200px" />
+                                    <td><img src="{{ asset('assets/products') }}/{{$item->image}}"
+                                            style="max-width:100px ; max-height:200px" />
                                     </td>
                                     <td>{{ $item->stock }}</td>
                                     <td>{{ $item->price }}</td>
@@ -81,7 +82,6 @@
                                     <th>Role</th>
                                     <th>Username</th>
                                     <th>Email</th>
-                                    <th>password</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
 
@@ -94,7 +94,7 @@
                                     <td style="max-width:200px ;">{{ $user->role }}</td>
                                     <td style="max-width:200px ;">{{ $user->username }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->password }}</td>
+
 
                                     <td>
                                         <a href="{{ url('edit-user/'.$user->id) }}"

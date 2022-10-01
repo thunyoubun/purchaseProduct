@@ -12,7 +12,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Edit & Update Student
+                    <h4>Edit & Update User
                         <a href="{{ url('dashboard') }}" class="btn btn-danger float-end">BACK</a>
                     </h4>
                 </div>
