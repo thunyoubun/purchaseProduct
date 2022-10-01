@@ -92,11 +92,6 @@ input:valid+label {
                                             <span class="text-danger text-left">{{ $errors->first('username') }}</span>
                                             @endif
                                         </div>
-                                        <!-- <div class="wrapper mb-3">
-                                            <input type="text" required="required" name="lastname"
-                                                aria-describedby="lastname">
-                                            <label for="lastname" class="form-label">Last Name</label>
-                                        </div> -->
 
                                         <div class="wrapper mb-3">
                                             <input type="email" name="email" value="{{ old('email') }}"

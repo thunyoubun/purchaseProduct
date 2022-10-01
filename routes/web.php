@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
+use Database\Seeders\ProductSeeder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +21,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
      * Home Routes
      */
     Route::get('/', 'ProductController@index')->name('home.index');
+
     Route::group(['middleware' => ['guest']], function () {
         /**
          * Register Routes
@@ -34,8 +38,24 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         /**
          * Logout Routes
          */
+
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
-        Route::get('/items/{id}', 'ProductController@item')->name('item');
+
+        Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
+        Route::get('/myaccount', 'HomeController@myaccount')->name('myaccount');
+
+        Route::get('add-product', [ProductController::class, 'create']);
+        Route::post('add-product', [ProductController::class, 'store']);
+        Route::get('edit-product/{id}', [ProductController::class, 'edit']);
+        Route::put('update-product/{id}', [ProductController::class, 'update']);
+        Route::get('delete-product/{id}', [ProductController::class, 'destroy']);
+
+        Route::get('edit-user/{id}', [AdminController::class, 'edit']);
+        Route::get('delete-user/{id}', [AdminController::class, 'destroy']);
+        Route::put('update-user/{id}', [AdminController::class, 'update']);
+
+        Route::get('/add-item/{id}', 'ProductController@addcountCart')->name('add.item');
+        Route::get('/item/{id}', 'ProductController@item')->name('item');
         Route::get('/cart', 'ProductController@cart')->name('cart');
         Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('add.to.cart');
         Route::get('/remove-to-cart/{id}', 'ProductController@addToCart')->name('remove.to.cart');

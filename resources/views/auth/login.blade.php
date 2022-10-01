@@ -98,7 +98,8 @@ input:valid+label {
                                                 value="{{ old('username') }}">
                                             <label for="floatingName">Username</label>
                                             @if ($errors->has('username'))
-                                            <span class="text-danger text-left">{{ $errors->first('username') }}</span>
+                                            <span
+                                                class="text-danger m-2 text-left">{{ $errors->first('username') }}</span>
                                             @endif
                                         </div>
                                         <div class="wrapper mb-3">
@@ -106,7 +107,8 @@ input:valid+label {
                                                 required="required">
                                             <label for="">Password</label>
                                             @if ($errors->has('password'))
-                                            <span class="text-danger text-left">{{ $errors->first('password') }}</span>
+                                            <span
+                                                class="text-danger m-2 text-left">{{ $errors->first('password') }}</span>
                                             @endif
                                         </div>
 

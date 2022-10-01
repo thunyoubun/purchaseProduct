@@ -24,6 +24,24 @@
             font-size: 3.5rem;
         }
     }
+
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: dodgerblue;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
     </style>
     <!-- Custom styles for this template -->
     <link href="{!! url('assets/css/app.css') !!}" rel="stylesheet">
@@ -40,11 +58,22 @@
     <main class="">
 
         @if(session('success'))
-        <div class="alert alert-success ">{{session('success')}}</div>
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="container">
+                <strong>Success!</strong> {{session('success')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
         @endif
         @yield('content')
 
+
     </main>
+
+    <!--     @include('layouts.partials.footer') -->
 
 
     <script src="{!! url('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
