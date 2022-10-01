@@ -49,11 +49,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('add-product', [ProductController::class, 'store']);
         Route::get('edit-product/{id}', [ProductController::class, 'edit']);
         Route::put('update-product/{id}', [ProductController::class, 'update']);
-        Route::get('delete-product/{id}', [ProductController::class, 'destroy']);
+        Route::delete('delete-product/{id}', [ProductController::class, 'destroy']);
 
         Route::get('edit-user/{id}', [AdminController::class, 'edit']);
-        Route::get('delete-user/{id}', [AdminController::class, 'destroy']);
         Route::put('update-user/{id}', [AdminController::class, 'update']);
+        Route::delete('delete-user/{id}', [AdminController::class, 'destroy']);
 
         /*product*/
         Route::get('/add-item/{id}', 'ProductController@addcountCart')->name('add.item');

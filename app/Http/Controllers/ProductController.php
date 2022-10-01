@@ -131,11 +131,12 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $extenstion = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extenstion;
+            $filename = $file->getClientOriginalName() . '.' . $extenstion;
             $file->move('assets/products', $filename);
-            $product->image = 'assets/products/' . $filename;
+            $product->image =  $filename;
         }
         $product->name = $request->input('name');
+        $product->title = $request->input('title');
         $product->description = $request->input('description');
         $product->stock = $request->input('stock');
         $product->price = $request->input('price');
@@ -172,21 +173,23 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         $product->name = $request->input('name');
+        $product->title = $request->input('title');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->stock = $request->input('stock');
 
         if ($request->hasFile('image')) {
             $destination = 'assets/products/' . $product->image;
-            if (File::exitsts()) {
+            if (File::exists($destination)) {
                 File::delete($destination);
             }
             $file = $request->file('image');
-            $extenstion = $file->getClientOriginalName();
-            $file->move(public_path() . 'assets/products/', $extenstion);
-            $product->image = $file;
+            $extenstion = $file->getClientOriginalExtension();
+            $fileName = time() . '.' . $extenstion;
+            $file->move('assets/products/', $fileName);
+            $product->image = $fileName;
         }
-        $product->save();
+        $product->update();
         return redirect()->route('dashboard')->with('success', 'Product updated successfully');
     }
     /**
@@ -199,8 +202,11 @@ class ProductController extends Controller
     {
         //
         $product = Product::find($id);
+        $destination = 'assets/products/' . $product->image;
+        if (File::exists($destination)) {
+            File::delete($destination);
+        }
         $product->delete();
-
         return redirect()->route('dashboard')->with('success', 'Product deleted successfully');
     }
 }

@@ -2,15 +2,15 @@
 @section('content')
 
 
-<div class="vh-100 bg-white">
+<div class=" bg-white">
     <div class="container p-4 bg-light h-100">
 
-        <div class="d-flex justify-content-center flex-xl-row flex-column ">
-            <div class=" border border-5 shadow-lg d-flex justify-content-center m-auto">
+        <div class="d-flex justify-content-center flex-xl-row flex-column gap-sm-3 ">
+            <div class=" border border-5 shadow d-flex justify-content-center   p-4">
                 <img src="{{ asset('assets/products') }}/{{$products->image}}" class="img-responsive m-2 "
                     style=" max-height:500px; max-width:400px" />
             </div>
-            <div class="h-100  border border-4  bg-white shadow-lg  p-4 " style="max-width: 700px;">
+            <div class="h-100  border border-4  bg-white shadow-lg  p-4  " style="max-width: 700px;">
                 <div class="container ">
                     <h4 class="mb-4">{{$products->name}}</h4>
                     <p class="text-primary fs-4 font-weight-bold">฿{{$products->price}}</p>
@@ -49,8 +49,28 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="bg-white mt-4 ">
+            <div class="container p-5 ">
+                <div class="position-relative border-top border-bottom align-items-middle p-3   ">
+                    <p class="w-100  text-center m-auto">
+                        <a class="text-decoration-none col d-block fs-5 " data-bs-toggle="collapse"
+                            href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="font-weight-bold">ข้อมูลสินค้า</span>
+                            <span class=" font-weight-bold position-absolute end-0  ">+</span>
+                        </a>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="d-flex justify-content-center">
+                            <div class="mt-2  text-center " style="max-width: 50%;">
+                                {{$products->description}}
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
 
+            </div>
         </div>
 
     </div>

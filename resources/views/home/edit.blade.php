@@ -12,13 +12,14 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Edit & Update Student
+                    <h4>Edit & Update Product
                         <a href="{{ url('dashboard') }}" class="btn btn-danger float-end">BACK</a>
                     </h4>
                 </div>
                 <div class="card-body">
 
-                    <form action="{{ url('update-product/'.$products->id) }}" method="POST">
+                    <form action="{{ url('update-product/'.$products->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -27,13 +28,17 @@
                             <input type="string" name="name" value="{{$products->name}}" class="form-control">
                         </div>
                         <div class="form-group mb-3">
+                            <label for="">Title</label>
+                            <input type="string" name="title" value="{{$products->title}}" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
                             <label for="">Description</label>
                             <input type="text" name="description" value="{{$products->description}}"
                                 class="form-control">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="image">Image</label>
-                            <input type="file" id="image" name="image" class="form-control">
+                            <label for="">Image</label>
+                            <input type="file" name="image" class="form-control">
 
                         </div>
                         <div class="form-group mb-3">

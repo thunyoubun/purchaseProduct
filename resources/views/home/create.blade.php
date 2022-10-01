@@ -35,12 +35,16 @@
                             <input type="string" name="name" class="form-control">
                         </div>
                         <div class="form-group mb-3">
+                            <label for="">Title</label>
+                            <input type="string" name="title" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
                             <label for="">Description</label>
                             <input type="text" name="description" class="form-control">
                         </div>
                         <div class="form-group mb-3">
                             <label for="">Image</label>
-                            <input type="file" name="image" required>
+                            <input type="file" name="image" required class="form-control">
                         </div>
                         <div class="form-group mb-3">
                             <label for="">Stock</label>
@@ -51,7 +55,7 @@
                             <input type="decimal" name="price" class="form-control">
                         </div>
                         <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary">Save Product</button>
+                            <button type="submit" class="btn btn-primary">Add Product</button>
                         </div>
 
                     </form>
