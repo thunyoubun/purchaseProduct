@@ -24,6 +24,15 @@ class ProductController extends Controller
 
         return view('home.index', compact('products', 'carts'));
     }
+    public function all()
+    {
+        //
+        $products = Product::all();
+        $carts = Cart::all();
+
+        return view('home.allproduct', compact('products', 'carts'));
+    }
+
 
     public function item($id)
     {

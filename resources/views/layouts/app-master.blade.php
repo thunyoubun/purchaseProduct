@@ -41,6 +41,32 @@
         border-radius: 10px;
     }
 
+    .session {
+        position: fixed;
+        animation-name: session;
+        visibility: hidden;
+        animation-duration: 3s;
+        right: 2%;
+
+    }
+
+    @keyframes session {
+        0% {
+            right: 0%;
+            visibility: visible;
+        }
+
+        50% {
+            right: 2%;
+            visibility: visible;
+        }
+
+        100% {
+            right: 2%;
+            visibility: visible;
+        }
+    }
+
     /* Handle on hover */
     </style>
     <!-- Custom styles for this template -->
@@ -55,16 +81,36 @@
 <body>
     @include('layouts.partials.navbar')
 
-    <main class="">
+    <main class="position-relative" style="overflow:hidden;">
 
         @if(session('success'))
 
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <div class="container">
-                <strong>Success!</strong> {{session('success')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <div class="session  d-flex shadow  " style="z-index:10;  top:10% ; " role="alert">
+            <div class="d-flex justify-content-center align-item-middle py-3 px-2 "
+                style="background-color:limegreen; ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="white" class="bi bi-check-lg"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                </svg>
+            </div>
+            <div class="d-flex bg-white text-center p-3 ">
+                <span class="font-weight-bold">{{session('success')}}</span>
+            </div>
+        </div>
+        @endif
+        @if(session('fail'))
+
+        <div class="session  d-flex shadow  " style="z-index:10;  top:10% ; " role="alert">
+            <div class="d-flex justify-content-center align-item-middle py-3 px-2 " style="background-color:crimson; ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="white" class="bi bi-x-lg"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                </svg>
+            </div>
+            <div class="d-flex bg-white text-center p-3 ">
+                <span class="font-weight-bold">{{session('fail')}}</span>
             </div>
         </div>
         @endif

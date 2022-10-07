@@ -34,7 +34,7 @@
 
                 <div class="d-block m-2  " style="width:10% ;">
                     <div class="d-flex justify-content-center x ">
-                        <p class="fs-5 fw-bold text-primary">฿{{ $cart->price }}</p>
+                        <p class="fs-5 fw-bold text-primary">฿{{ $cart->price * $cart->quantity }}</p>
                     </div>
                     <div class="d-flex justify-content-center align-items-center  ">
 

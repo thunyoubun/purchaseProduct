@@ -46,7 +46,7 @@
             <div class="container">
                 <!--Corussal-->
                 <div id="carouselExampleIndicators" class="carousel slide carousel-fade d-flex justify-content-center "
-                    data-ride="carousel" style="max-height: 500px;">
+                    data-ride="carousel" style="max-height: 500px; z-index:5">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -187,7 +187,7 @@
 
         <div class="container bg-white shadow-lg mt-3 mb-3">
             <div class="container p-4">
-                <a href="" class="text-primary text-decoration-none d-flex justify-content-center ">
+                <a href="{{url('all')}}" class="text-primary text-decoration-none d-flex justify-content-center ">
                     <p class="fs-5 font-weight-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
                             class="bi bi-columns-gap" viewBox="0 0 16 16">
@@ -341,7 +341,7 @@
     <!--MG-News-->
     <div class="container bg-white shadow-lg mt-3 mb-3">
         <div class="container p-4">
-            <a href="" class="text-primary text-decoration-none d-flex justify-content-center ">
+            <a href="{{url('all')}}" class="text-primary text-decoration-none d-flex justify-content-center ">
                 <p class="fs-5 font-weight-bold">
                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
                         class="bi bi-columns-gap" viewBox="0 0 16 16">

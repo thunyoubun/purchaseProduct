@@ -44,6 +44,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
         Route::get('/myaccount', 'HomeController@myaccount')->name('myaccount');
 
+
+        Route::get('/all', 'ProductController@all')->name('all');
+
         /*dashboard */
         Route::get('add-product', [ProductController::class, 'create']);
         Route::post('add-product', [ProductController::class, 'store']);
