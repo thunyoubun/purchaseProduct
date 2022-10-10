@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
@@ -18,17 +19,25 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-        $products = Product::all();
-        $carts = Cart::all();
 
-        return view('home.index', compact('products', 'carts'));
+        $products = Product::all();
+        if (Auth::check()) {
+            $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
+            return view('home.index', compact('products', 'carts'));
+        } else {
+            return view('home.index', compact('products'));
+        }
     }
     public function all()
     {
         //
         $products = Product::all();
-        $carts = Cart::all();
+        if (Auth::check()) {
+            $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
+            return view('home.allproduct', compact('products', 'carts'));
+        } else {
+            return view('home.allproduct', compact('products'));
+        }
 
         return view('home.allproduct', compact('products', 'carts'));
     }
@@ -38,13 +47,17 @@ class ProductController extends Controller
     {
         $products = Product::find($id);
         /*     $products = Product::where('id', '=', $idx->id)->first(); */
-        $carts = Cart::all();
-        return view('item', compact('products', 'carts'));
+        if (Auth::check()) {
+            $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
+            return view('item', compact('products', 'carts'));
+        } else {
+            return view('item', compact('products'));
+        }
     }
 
     public function cart()
     {
-        $carts = DB::select('select * from carts');
+        $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
         $users = User::all();
         return view('cart', ['carts' => $carts, 'users' => $users]);
     }
@@ -61,12 +74,35 @@ class ProductController extends Controller
         return  back()->with('success', 'Product removed successfully');
     }
 
-    public function addToCart($id)
+    public function addToCart($id,)
     {
-        $users = User::all();
+        $users = User::find(auth()->user()->id);
         $product = Product::find($id);
-        $cart = Cart::where('name', '=', $product->name)->first();
+        $cart = Cart::where('name', '=', $product->name)->where('user_id', '=', auth()->user()->id)->first();
         DB::transaction(function () use ($product, $cart, $users) {
+            if ($cart != null) {
+                $cart->quantity = $cart->quantity + 1;
+                $cart->save();
+            } else {
+                $cart = new Cart();
+                $cart->user_id = $users->id;
+                $cart->name = $product->name;
+                $cart->quantity = 1;
+                $cart->price = $product->price;
+                $cart->image = $product->image;
+                $cart->save();
+            }
+            $product->stock = $product->stock - 1;
+            $product->save();
+        });
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
+    public function addcountCart($id)
+    {
+        $cart = Cart::findOrFail($id);
+        $product = Product::where('name', '=', $cart->name)->first();
+        DB::transaction(function () use ($product, $cart) {
             if ($cart != null) {
                 $cart->quantity = $cart->quantity + 1;
                 $cart->save();
@@ -81,17 +117,18 @@ class ProductController extends Controller
             $product->stock = $product->stock - 1;
             $product->save();
         });
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        return redirect()->back();
     }
-
-    public function addcountCart($id, $count)
+    public function removecountCart($id)
     {
         $cart = Cart::findOrFail($id);
-
         $product = Product::where('name', '=', $cart->name)->first();
-        DB::transaction(function () use ($product, $cart, $count) {
+        DB::transaction(function () use ($product, $cart) {
             if ($cart != null) {
-                $cart->quantity = $cart->quantity + $count;
+                $cart->quantity = $cart->quantity - 1;
+                if ($cart->quantity <= 0) {
+                    return $cart->delete();
+                }
                 $cart->save();
             } else {
                 $cart = new Cart();
@@ -101,10 +138,12 @@ class ProductController extends Controller
                 $cart->image = $product->image;
                 $cart->save();
             }
-            $product->stock = $product->stock - $count;
+
+
+            $product->stock = $product->stock + 1;
             $product->save();
         });
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        return redirect()->back();
     }
 
     public function removeToCart($id)
@@ -129,7 +168,7 @@ class ProductController extends Controller
     public function create()
     {
         $products = Product::all();
-        $carts = Cart::all();
+        $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
         return view('home.create', compact('products', 'carts'));
     }
 
@@ -146,6 +185,7 @@ class ProductController extends Controller
         }
         $product->name = $request->input('name');
         $product->title = $request->input('title');
+        $product->category = $request->input('category');
         $product->description = $request->input('description');
         $product->stock = $request->input('stock');
         $product->price = $request->input('price');
@@ -172,7 +212,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $products = Product::find($id);
-        $carts = Cart::all();
+        $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
         return view('home.edit', compact('products', 'carts'));
     }
 

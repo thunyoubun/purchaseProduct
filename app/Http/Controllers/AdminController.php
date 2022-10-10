@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -14,8 +15,9 @@ class AdminController extends Controller
 
     public function dashboard()
     {
+
         $products = Product::all();
-        $carts = Cart::all();
+        $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
         $users = User::all();
         return view('home.dashboard', ['products' => $products, 'carts' => $carts, 'users' => $users]);
     }
@@ -46,7 +48,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $users = User::find($id);
-        $carts = Cart::all();
+        $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
         return view('home.edit_user', compact('users', 'carts'));
     }
 

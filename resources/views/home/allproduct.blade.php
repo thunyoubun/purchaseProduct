@@ -12,6 +12,7 @@
     border-style: solid;
     border-width: 5px;
     border-color: grey;
+    z-index: 15;
 
 }
 
@@ -32,6 +33,42 @@
 
 .form-check-input:active {
     background-color: dodgerblue;
+}
+
+.cardt {
+
+    width: fit-content;
+    height: fit-content;
+    display: grid;
+    grid-template-rows: minmax(100%, 1fr);
+    grid-template-areas: "stack";
+    overflow: hidden;
+}
+
+.cardt>img,
+.cardt>figcaption {
+    grid-area: stack;
+}
+
+.cardt>figcaption {
+    border: none;
+    grid-area: stack;
+    background-color: white;
+
+    /* transform: translateZ(calc(100% - 0rem)); */
+
+    opacity: 0%;
+    transition: ease-in-out 0.5s;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+.cardt:hover figcaption {
+    opacity: 100%;
+    text-align: center;
 }
 </style>
 
@@ -109,8 +146,9 @@
                             <div class=" position-relative h-100  " style="width: 202px;">
                                 <div class="w-100">
                                     <div class="d-block ">
-                                        <div class=" text-decoration-none text-dark text-center alight-cnter " alt="">
-                                            <a href="">
+                                        <div class="position-relative text-decoration-none text-dark text-center alight-cnter "
+                                            alt="">
+                                            <a href="" class="">
                                                 <span class=" fav rounded-circle shadow"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="23" height="23"
                                                         fill="currentColor" class="bi bi-heart-fill"
@@ -120,14 +158,26 @@
                                                     </svg>
                                                 </span>
                                             </a>
-                                            <div>
-                                                <a href="{{route('item', $product->id)}}">
+                                            <a href="{{route('item', $product->id)}} "
+                                                class="text-decoration-none text-white d-flex justify-content-center">
+                                                <figure class="cardt text-decoration-none">
                                                     <img src="{{ asset('assets/products') }}/{{$product->image}}"
-                                                        class="items border  m-3" style="width:143px; height:202px">
-                                                </a>
-                                            </div>
+                                                        class="" style="width:143px; height:202px">
+                                                    <figcaption
+                                                        class="d-flex align-items-center bg-white bg-opacity-75 ">
+                                                        <button
+                                                            class=" btn btn-dark d-flex justify-content-center  fs-6 rounded"
+                                                            style="width:100px">
+                                                            <div class="font-weight-bolder fs-6 lh-1 text-wrap"
+                                                                style="max-width: 50px;">
+                                                                Quick View
+                                                            </div>
+                                                        </button>
+                                                    </figcaption>
+                                                </figure>
+                                            </a>
                                         </div>
-                                        <div class="d-block mt-1 mb-1   text-left" style="max-width: 100%; height:60px">
+                                        <div class=" d-block mt-1 mb-1 text-left" style="max-width: 100%; height:60px">
                                             <a href="{{route('item', $product->id)}}" class=" d-block text-decoration-none text-truncate text-wrap text-center
                                             lh-sm text-center w-100 overflow-hidden ">
                                                 <p class="tile-name">

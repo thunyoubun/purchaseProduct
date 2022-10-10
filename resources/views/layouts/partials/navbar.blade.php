@@ -66,7 +66,7 @@
 }
 
 .btn-search:hover {
-    background-color: blue;
+    background-color: dodgerblue;
     color: white;
 }
 
@@ -117,13 +117,14 @@
             <div class="col">
                 <a href="/"
                     class="d-flex align-middle mb-2 mb-lg-0 justify-content-start text-white fs-3 font-weight-bold  text-decoration-none  ">
-                    Product
+                    Switch
                 </a>
             </div>
             <!--Serch -->
-            <div class="box col  " style="max-width: 450px;">
-                <div class="search-box ">
-                    <input style="background-color:white;color:royalblue; " type="search" placeholder="Search">
+            <div class="box col d-none d-sm-block  " style="max-width: 450px;">
+                <div class="search-box">
+                    <input style="background-color:white;color:royalblue; " class="	" type="search"
+                        placeholder="Search">
                     <button class="btn-search" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                             height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path
@@ -133,15 +134,26 @@
 
             </div>
 
+
+
             <div class="col  d-flex justify-content-end  gap-4 mr-2 ">
                 <!--cart-->
                 @guest
-                <a href="{{url('cart')}}" class="img-cart"><svg xmlns="http://www.w3.org/2000/svg" width="23"
+
+
+                <a href="" class="d-block d-sm-none" style="color:#fff"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="23" height="23" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg></a>
+
+                <a href="{{url('login')}}" class="img-cart"><svg xmlns="http://www.w3.org/2000/svg" width="23"
                         height="23" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                         <path
                             d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                     </svg>
                 </a>
+
                 <!--favorite-->
                 <a href="" class="img-fav ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
@@ -166,9 +178,15 @@
                 @auth
 
                 <!--Cart-->
+                <div>
+                    <a href="" class="d-block d-sm-none" style="color:#fff"><svg xmlns="http://www.w3.org/2000/svg"
+                            width="23" height="23" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg></a>
+                </div>
+
                 <div class="position-relative">
-
-
                     <a href="{{url('cart')}}" class="img-cart"><svg xmlns="http://www.w3.org/2000/svg" width="23"
                             height="23" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                             <path

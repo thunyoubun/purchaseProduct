@@ -40,7 +40,7 @@
 
 
 <div class="bg-light ">
-    @auth
+
     <div class="">
         <div class="bg-dark shadow-lg mt-0">
             <div class="container">
@@ -201,16 +201,16 @@
                     <div class="carousel-inner  d-flex">
                         <!--1-->
 
-                        @php $total = 0
+                        <!-- @php $total = 0
                         @endphp
                         @foreach( $products as $product )
                         @php $total += 1
                         @endphp
-                        @endforeach
+                        @endforeach -->
 
                         <div class="carousel-item active d-flex justify-content-center text-center bg-white gap-3 ">
                             @foreach($products as $product)
-                            @if($product->id <= 5) <div class=" position-relative h-100  " style="width: 202px;">
+                            @if($product->id <= 5 ) <div class=" position-relative h-100  " style="width: 202px;">
                                 <div class="w-100">
                                     <div class="d-block ">
                                         <div class=" text-decoration-none text-dark text-center alight-cnter " alt="">
@@ -242,7 +242,7 @@
                                         </div>
                                     </div>
                                     <div class="d-block  ">
-                                        <a href="{{ route('add.to.cart', $product->id) }}">
+                                        <a href="{{ route('add.to.cart', $product->id ) }}">
                                             <button type="button" class="btn btn-outline-primary " style=" width:100%;">
                                                 <div class="d-flex align-items-center justify-content-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -355,12 +355,12 @@
                 <div class="carousel-inner  d-flex">
                     <!--1-->
 
-                    @php $total = 0
+                    <!-- @php $total = 0
                     @endphp
                     @foreach( $products as $product )
                     @php $total += 1
                     @endphp
-                    @endforeach
+                    @endforeach -->
 
                     <div class="carousel-item active d-flex justify-content-center text-center bg-white gap-3 ">
                         @foreach($products as $product)
@@ -442,7 +442,6 @@
                                     <a href="{{route('item', $product->id)}}"
                                         class=" d-block text-decoration-none  text-truncate text-wrap text-center lh-sm text-center w-100 overflow-hidden  ">
                                         <p class="tile-name">
-                                            {{$total}}
                                             {{ $product->name }}
                                         </p>
                                     </a>
@@ -489,16 +488,16 @@
             </div>
         </div>
     </div>
-    @endauth
+
 </div>
 </div>
-@guest
-<div class="container mt-5">
+<!-- @guest -->
+<!-- <div class="container mt-5">
     <h1>Homepage</h1>
     <p class="lead">Your viewing the home page. Please login to view the
         restricted data.</p>
     @endguest
-</div>
+</div> -->
 
 </div>
 

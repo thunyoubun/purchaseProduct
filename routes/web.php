@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use Database\Seeders\ProductSeeder;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\EnsureTokenIsValid;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     /**
      * Home Routes
      */
-    Route::get('/', 'ProductController@index')->name('home.index');
+
 
     Route::group(['middleware' => ['guest']], function () {
         /**
@@ -34,18 +35,32 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/login', 'LoginController@show')->name('login.show');
         Route::post('/login', 'LoginController@login')->name('login.perform');
     });
+
+    Route::get('/', 'ProductController@index')->name('home.index');
+    Route::get('/item/{id}', 'ProductController@item')->name('item');
+    Route::get('/all', 'ProductController@all')->name('all');
+
     Route::group(['middleware' => ['auth']], function () {
         /**
          * Logout Routes
          */
 
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
-
-        Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
         Route::get('/myaccount', 'HomeController@myaccount')->name('myaccount');
 
 
-        Route::get('/all', 'ProductController@all')->name('all');
+        /*product*/
+        Route::get('/add-item/{id}', 'ProductController@addcountCart')->name('add.item');
+        Route::get('/remove-item/{id}', 'ProductController@removecountCart')->name('remove.item');
+
+        Route::get('/cart', 'ProductController@cart')->name('cart');
+        Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('add.to.cart');
+        Route::get('/remove-to-cart/{id}', 'ProductController@addToCart')->name('remove.to.cart');
+        Route::delete('/remove-from-cart/{id}', 'ProductController@remove')->name('remove.from.cart');
+    });
+
+    Route::middleware(['auth', 'is_admin'])->group(function () {
+        Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
 
         /*dashboard */
         Route::get('add-product', [ProductController::class, 'create']);
@@ -57,13 +72,5 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('edit-user/{id}', [AdminController::class, 'edit']);
         Route::put('update-user/{id}', [AdminController::class, 'update']);
         Route::delete('delete-user/{id}', [AdminController::class, 'destroy']);
-
-        /*product*/
-        Route::get('/add-item/{id}', 'ProductController@addcountCart')->name('add.item');
-        Route::get('/item/{id}', 'ProductController@item')->name('item');
-        Route::get('/cart', 'ProductController@cart')->name('cart');
-        Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('add.to.cart');
-        Route::get('/remove-to-cart/{id}', 'ProductController@addToCart')->name('remove.to.cart');
-        Route::delete('/remove-from-cart/{id}', 'ProductController@remove')->name('remove.from.cart');
     });
 });

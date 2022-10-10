@@ -15,19 +15,20 @@
                 <div class="d-flex">
                     <img src="{{ asset('assets/products') }}/{{$cart->image}}" width="143" height="200"
                         class="img-responsive m-2 rounded-2" />
-                    <div class="d-block m-2  position-relative" style="width:50% ;">
-                        <p class="fs-6  fw-bold">{{ $cart->name }}</p>
+                    <div class="d-block m-2  position-relative">
+                        <p class=" fs-6 fw-bold">{{ $cart->name }}</p>
                         <button
                             class="btn btn-outline-secondary position-absolute bottom-0 start-0 p-2 d-flex justify-content-center text-center align-bottom"
                             style="height:fit-content">
                             <div class=" d-flex gap-4">
-                                <a href="{{ route('remove.to.cart', $cart->id) }}" class=" 
+                                <a href="{{ route('remove.item', $cart->id) }}" class=" 
                                  text-decoration-none fw-bold mr-1">-</a>
                                 <a class="fw-bold">{{ $cart->quantity }}</a>
-                                <a href="{{ route('add.to.cart', $cart->id) }}" class=" 
+                                <a href="{{ route('add.item', $cart->id) }}" class=" 
                                  text-decoration-none fw-bold mr-1">+</a>
                             </div>
                         </button>
+
 
                     </div>
                 </div>
@@ -70,7 +71,7 @@
                     <div class="text-right">
                         <a href="{{ url('/') }}" class="btn btn-outline-primary"><i class="fa fa-angle-left"></i>
                             กลับไปช้อปต่อ</a>
-                        <button class="btn btn-outline-success">สั่งซื้อ</button>
+                        <button class="btn btn-outline-success px-5 ">สั่งซื้อ</button>
                     </div>
                 </div>
             </div>

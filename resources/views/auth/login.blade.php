@@ -68,8 +68,11 @@ label {
 
 input:focus+label,
 input:valid+label {
+
     font-size: 15px;
     top: 0;
+    padding-left: 5px;
+    padding-right: 5px;
     background-color: white;
 }
 </style>

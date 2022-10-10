@@ -29,6 +29,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th>Type</th>
                                     <th>Title</th>
                                     <th>Description</th>
                                     <th>Image</th>
@@ -41,8 +42,9 @@
                             <tbody>
                                 @foreach ($products as $item)
                                 <tr class="bg-white">
-                                    <td>{{ $item->id }}</td>
+                                    <td class="text-center">{{ $item->id }}</td>
                                     <td style="max-width:200px ;  ">{{ $item->name }}</td>
+                                    <td style="max-width:50px  ;  " class="text-center">{{ $item->category }}</td>
                                     <td style="max-width:200px ; ;">{{ $item->title }}</td>
                                     <td>
                                         <div style=" max-height: 150px;max-width:400px;overflow: auto;">

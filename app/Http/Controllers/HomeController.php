@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function myaccount()
     {
         $users = Auth::user();
-        $carts = Cart::all();
+        $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
         return view('home.myaccount', compact('users', 'carts'));
     }
 }

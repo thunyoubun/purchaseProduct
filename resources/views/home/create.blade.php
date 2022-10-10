@@ -39,6 +39,14 @@
                             <input type="string" name="title" class="form-control">
                         </div>
                         <div class="form-group mb-3">
+                            <label for="exampleFormControlSelect1">Category</label>
+                            <select class="form-select" aria-label="Default select example"
+                                placeholder="Select category...">
+                                <option value="1">LN</option>
+                                <option value="2">MG</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
                             <label for="">Description</label>
                             <input type="text" name="description" class="form-control">
                         </div>
