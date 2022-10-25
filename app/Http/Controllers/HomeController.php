@@ -20,6 +20,7 @@ class HomeController extends Controller
     {
         $users = Auth::user();
         $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
-        return view('home.myaccount', compact('users', 'carts'));
+        $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
+        return view('home.myaccount', compact('users', 'carts', 'favorites'));
     }
 }

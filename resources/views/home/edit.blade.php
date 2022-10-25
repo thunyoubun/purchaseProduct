@@ -32,6 +32,14 @@
                             <input type="string" name="title" value="{{$products->title}}" class="form-control">
                         </div>
                         <div class="form-group mb-3">
+                            <label for="category">Category</label>
+                            <select name="category" class="form-select" type="integer"
+                                aria-label="Default select example" placeholder="Select category...">
+                                <option value="2">LN</option>
+                                <option value="1">MG</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
                             <label for="">Description</label>
                             <input type="text" name="description" value="{{$products->description}}"
                                 class="form-control">

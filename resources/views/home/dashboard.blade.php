@@ -44,7 +44,9 @@
                                 <tr class="bg-white">
                                     <td class="text-center">{{ $item->id }}</td>
                                     <td style="max-width:200px ;  ">{{ $item->name }}</td>
-                                    <td style="max-width:50px  ;  " class="text-center">{{ $item->category }}</td>
+                                    <td style="max-width:50px  ;  " class="text-center">
+                                        {{ $item->ProductCategoryID == '1' ? "MG" : "LN"  }}
+                                    </td>
                                     <td style="max-width:200px ; ;">{{ $item->title }}</td>
                                     <td>
                                         <div style=" max-height: 150px;max-width:400px;overflow: auto;">
@@ -106,6 +108,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Role</th>
+                                    <th>Name</th>
                                     <th>Username</th>
                                     <th>Email</th>
                                     <th>Edit</th>
@@ -118,6 +121,7 @@
                                 <tr class="bg-white">
                                     <td>{{ $user->id }}</td>
                                     <td style="max-width:200px ;">{{ $user->role }}</td>
+                                    <td style="max-width:200px ;">{{ $user->name }}</td>
                                     <td style="max-width:200px ;">{{ $user->username }}</td>
                                     <td>{{ $user->email }}</td>
 

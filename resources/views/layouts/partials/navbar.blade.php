@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets\bootstrap\css\bootstrap.min.css">
 
     <title>Product</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <style>
@@ -114,9 +115,8 @@
 <header class="p-3 text-white " style="background-color:royalblue">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-center">
-            <div class="col">
-                <a href="/"
-                    class="d-flex align-middle mb-2 mb-lg-0 justify-content-start text-white fs-3 font-weight-bold  text-decoration-none  ">
+            <div class="col d-flex align-middle mb-2 mb-lg-0 justify-content-start ">
+                <a href="/" class=" text-white fs-3 font-weight-bold  text-decoration-none ">
                     Switch
                 </a>
             </div>
@@ -155,7 +155,7 @@
                 </a>
 
                 <!--favorite-->
-                <a href="" class="img-fav ">
+                <a href="{{route('favorite')}}" class="img-fav ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
                         class="bi bi-heart-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -208,17 +208,24 @@
 
 
                 <!--favorite-->
-                <div class="">
+                <div class="position-relative">
 
-                    <a href="" class="img-fav ">
+                    <a href="{{url('favorite')}}" class="img-fav ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
                             class="bi bi-heart-fill" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
                         </svg>
-
-
-
+                        @php $total = 0 @endphp
+                        @foreach($favorites as $favorite)
+                        @php $total += $favorite->quantity @endphp
+                        @endforeach
+                        @if($total != 0)
+                        <span
+                            class="count d-flex justify-content-center position-absolute  end-0 text-white bg-danger border border-2  rounded-circle   ">
+                            {{$total}}
+                        </span>
+                        @endif
                     </a>
                 </div>
                 <div class="dropdown">

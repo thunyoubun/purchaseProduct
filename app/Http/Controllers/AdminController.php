@@ -18,8 +18,9 @@ class AdminController extends Controller
 
         $products = Product::all();
         $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
+        $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
         $users = User::all();
-        return view('home.dashboard', ['products' => $products, 'carts' => $carts, 'users' => $users]);
+        return view('home.dashboard', ['products' => $products, 'carts' => $carts, 'users' => $users, 'favorites' => $favorites]);
     }
 
     public function store(Request $request)
@@ -48,8 +49,9 @@ class AdminController extends Controller
     public function edit($id)
     {
         $users = User::find($id);
+        $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
         $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
-        return view('home.edit_user', compact('users', 'carts'));
+        return view('home.edit_user', compact('users', 'carts', 'favorites'));
     }
 
     public function destroy($id)

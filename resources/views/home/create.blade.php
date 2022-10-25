@@ -40,10 +40,10 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="exampleFormControlSelect1">Category</label>
-                            <select class="form-select" aria-label="Default select example"
+                            <select name="category" class="form-select" aria-label="Default select example"
                                 placeholder="Select category...">
-                                <option value="1">LN</option>
-                                <option value="2">MG</option>
+                                <option value="2">LN</option>
+                                <option value="1">MG</option>
                             </select>
                         </div>
                         <div class="form-group mb-3">

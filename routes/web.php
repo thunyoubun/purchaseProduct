@@ -38,7 +38,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     Route::get('/', 'ProductController@index')->name('home.index');
     Route::get('/item/{id}', 'ProductController@item')->name('item');
-    Route::get('/all', 'ProductController@all')->name('all');
+
+
+    Route::get('product', [ProductController::class, 'all'])->name('product');
+
+
 
     Route::group(['middleware' => ['auth']], function () {
         /**
@@ -53,10 +57,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/add-item/{id}', 'ProductController@addcountCart')->name('add.item');
         Route::get('/remove-item/{id}', 'ProductController@removecountCart')->name('remove.item');
 
+
         Route::get('/cart', 'ProductController@cart')->name('cart');
+        Route::get('/favorite', 'ProductController@favorite')->name('favorite');
         Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('add.to.cart');
+        Route::get('/add-to-fav/{id}', 'ProductController@addToFav')->name('add.to.fav');
         Route::get('/remove-to-cart/{id}', 'ProductController@addToCart')->name('remove.to.cart');
+        Route::get('/remove-to-fav/{id}', 'ProductController@addToCart')->name('remove.to.fav');
         Route::delete('/remove-from-cart/{id}', 'ProductController@remove')->name('remove.from.cart');
+        Route::delete('/remove-from-fav/{id}', 'ProductController@removeFav')->name('remove.from.fav');
     });
 
     Route::middleware(['auth', 'is_admin'])->group(function () {

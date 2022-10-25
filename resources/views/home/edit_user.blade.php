@@ -34,7 +34,7 @@
                             </select>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="">E-mail</label>
+                            <label for="">Email</label>
                             <input type="integer" name="email" value="{{$users->email}}" class="form-control">
                         </div>
                         <div class="form-group mb-3">
@@ -42,7 +42,7 @@
                             <input type="password" name="password" class="form-control" require>
                         </div>
                         <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary">Update Product</button>
+                            <button type="submit" class="btn btn-primary">Update User</button>
                         </div>
 
                     </form>

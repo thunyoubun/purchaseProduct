@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('product_category', function (Blueprint $table) {
+        Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->integer("category_id")->nullable();
+            $table->integer("user_id");
+            $table->string("name", 255)->nullable();
+            $table->string("image", 255)->nullable();
+            $table->integer("quantity");
+            $table->decimal("price", 6, 2);
+            $table->timestamps();
         });
     }
 
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('favorites');
     }
 };

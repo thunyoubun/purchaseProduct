@@ -7,11 +7,11 @@
     position: absolute;
     top: 6%;
     right: 5%;
-    background-color: grey;
-    color: white;
+    background-color: whitesmoke;
+    color: crimson;
     border-style: solid;
     border-width: 5px;
-    border-color: grey;
+    border-color: whitesmoke;
     z-index: 15;
 
 }
@@ -72,92 +72,61 @@
 }
 </style>
 
+
+
 <div class="bg-light ">
     <div class="container   pt-5 pb-5 ">
         <div class="d-flex gap-3 ">
 
-            <!--Filter-->
-            <div class="filter bg-white h-100 shadow sm-hidden" style="width: 25% ;">
-                <div class="d-flex row p-4">
-                    <div class="text-start">
-                        <h5>Filter</h5>
-                        <hr>
-                    </div>
-                    <div class="">
-                        <h6>Category</h6>
 
-                        <div class="form-check row pl-5 py-2">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                All
-                            </label>
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                Manga
-                            </label>
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                Light Novel
-                            </label>
-                        </div>
-                        <hr>
-                    </div>
-                    <div class="">
-                        <h6>Price</h6>
 
-                        <div class="form-check row pl-5 py-2">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                ราคา : ต่ำไปสูง
-                            </label>
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                ราคา : สูงไปต่ำ
-                            </label>
-                        </div>
-                        <hr>
 
-                    </div>
-                </div>
-            </div>
 
-            <!--Product-->
+
+            <!--Fav-->
             <div class="bg-white h-100 shadow " style="width:100% ;">
-                <div class="container p-4 ">
-                    <div class="d-block text-end mx-5 ">
-                        @php $total = 0
-                        @endphp
-                        @foreach( $products as $product )
-                        @php $total += 1
-                        @endphp
-                        @endforeach
-                        <span class="text-primary fs-5">{{$total}} </span>
-                        <span class="text-primary fs-6">items</span>
+                <div class="container p-4  ">
+                    <div class="d-flex px-4 position-relative align-items-center ">
+                        <span class="fs-2 fw-semibold ">Favorite</span>
+                        <div class="position-absolute end-0 mx-5 ">
+                            @php $total = 0
+                            @endphp
+                            @foreach( $products as $product )
+                            @php $total += 1
+                            @endphp
+                            @endforeach
+
+                            <span class="text-primary fs-5">{{$total}} </span>
+                            <span class="text-primary fs-6">Items</span>
+                        </div>
                     </div>
 
-                    <div class="d-flex flex-wrap ">
+                    <hr>
+
+                    <div class="d-flex flex-wrap gap-5  " id="tbody">
                         @foreach($products as $product)
-                        <div class="col mt-2 ">
+                        <div class=" mt-3 ">
                             <div class=" position-relative h-100  " style="width: 202px;">
                                 <div class="w-100">
                                     <div class="d-block ">
                                         <div class="position-relative text-decoration-none text-dark text-center alight-cnter "
                                             alt="">
-                                            <a href="" class="">
-                                                <span class=" fav rounded-circle shadow"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="23" height="23"
+
+
+                                            <form action="{{ url('remove-from-fav/'.$product->id) }}" method="POST">
+
+                                                <button class=" fav rounded-circle shadow">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
                                                         fill="currentColor" class="bi bi-heart-fill"
                                                         viewBox="0 0 16 16">
                                                         <path fill-rule="evenodd"
                                                             d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
                                                     </svg>
-                                                </span>
-                                            </a>
+
+                                                </button>
+                                            </form>
                                             <a href="{{route('item', $product->id)}} "
                                                 class="text-decoration-none text-white d-flex justify-content-center">
                                                 <figure class="cardt text-decoration-none">
@@ -209,11 +178,15 @@
                         @endforeach
 
                     </div>
+
+
                 </div>
             </div>
+
         </div>
     </div>
-</div>
 
 
-@endsection
+
+
+    @endsection

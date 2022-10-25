@@ -1,11 +1,11 @@
 @extends('layouts.app-master')
 @section('content')
 
-<div class="vh-100 bg-white">
+<div class=" bg-white">
     @auth
     <div class="container p-4">
         <div class="">
-            <p class="fs-5 fw-bold">ตะกร้าสิ้นค้า</p>
+            <p class="fs-5 fw-bold">ตะกร้าสินค้า</p>
         </div>
         <div class="d-flex flex-column  ">
             @php $total = 0 @endphp
@@ -64,7 +64,7 @@
                     <p class="text-left fs-5 fw-bold text-secondary">
                         ราคาสุทธิ
                     </p>
-                    <p class=" fs-3 fw-bold text-secondary"> ฿{{ $total }} </p>
+                    <p class=" fs-3 fw-bold text-success"> ฿{{ $total }} </p>
 
                 </div>
                 <div>

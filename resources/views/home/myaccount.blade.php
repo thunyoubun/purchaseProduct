@@ -55,7 +55,7 @@
                                                 ชื่อ :
                                             </label>
                                             <span class="fs-6 font-weight-bold"
-                                                style="min-width: 86px; line-height: 20px;">{{$users->username}}</span>
+                                                style="min-width: 86px; line-height: 20px;">{{$users->name === null ? "-" : $users->name}}</span>
                                         </div>
                                         <div class="d-flex mb-3">
                                             <label class="fs-6 text-secondary"
@@ -71,7 +71,7 @@
                                                 เบอร์โทร :
                                             </label>
                                             <span class="fs-6 font-weight-bold"
-                                                style="min-width: 86px; line-height: 20px;">{{$users->phone}}</span>
+                                                style="min-width: 86px; line-height: 20px;">{{$users->phone === null ? "-" : $users->phone}}</span>
                                         </div>
                                         <div class="d-flex ">
                                             <label class="fs-6 text-secondary"
@@ -79,7 +79,7 @@
                                                 ที่อยู่ :
                                             </label>
                                             <span class="fs-6 font-weight-bold"
-                                                style="min-width: 86px; line-height: 20px;">{{$users->username}}</span>
+                                                style="min-width: 86px; line-height: 20px;">{{$users->address === null ? "-" : $users->address}}</span>
                                         </div>
                                     </div>
 

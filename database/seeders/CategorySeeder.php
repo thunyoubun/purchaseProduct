@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use Illuminate\Database\Seeder;
-use App\Models\Product;
+use App\Models\Category;
 
 class CategorySeeder extends Seeder
 {
@@ -18,17 +17,13 @@ class CategorySeeder extends Seeder
         $category = [
 
             [
-                'title' => 'ชีวิตไม่ต้องเด่น ขอแค่เป็นเทพในเงา',
+                'name' => 'LightNovel'
             ],
             [
-                'title' => 'คุณแม่ที่มีสกิลพื้นฐานเป็นการโจมตีหมู่แถมยังเบิ้ลได้แบบนี้ชอบไหมจ๊ะ',
-            ],
-            [
-                'title' => 'คุณอาเรียโต๊ะข้างๆ พูดรัสเซียหวานใส่ซะหัวใจจะวาย',
-            ],
-            [
-                'title' => 'ขอต้อนรับสู่ห้องเรียนนิยม (เฉพาะ) ยอดคน',
+                'name' => 'Manga'
             ]
+
+
 
         ];
         foreach ($category as $key => $value) {

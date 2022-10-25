@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Cart;
+use App\Models\Category;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Symfony\Component\Console\Input\Input;
 
 class ProductController extends Controller
 {
@@ -23,23 +26,67 @@ class ProductController extends Controller
         $products = Product::all();
         if (Auth::check()) {
             $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
-            return view('home.index', compact('products', 'carts'));
+            $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
+            return view('home.index', compact('products', 'carts', 'favorites'));
         } else {
             return view('home.index', compact('products'));
         }
     }
-    public function all()
+
+
+    public function all(Request $request)
     {
-        //
+
         $products = Product::all();
+        $categories = Category::all();
+
+
         if (Auth::check()) {
             $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
-            return view('home.allproduct', compact('products', 'carts'));
+            $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
+            return view('home.product', compact('products', 'carts', 'categories', 'favorites'));
         } else {
-            return view('home.allproduct', compact('products'));
+            return view('home.product', compact('products'));
         }
+    }
 
-        return view('home.allproduct', compact('products', 'carts'));
+    public function filterProduct(Request $request)
+    {
+        $categories = Category::all();
+        $query = Product::query();
+        $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
+        if ($request->ajax()) {
+            if (empty($request->category)) {
+                $products = $query->get();
+            } else {
+                $products = $query->where('ProductCategoryID', $request->category)->get();
+            }
+            return response()->json(['products' => $products]);
+        }
+        $products = $query->get();
+        return view('home.product', compact('categories', 'products', 'carts'));
+    }
+
+
+
+    public function product($category)
+    {
+        $categories = Category::where('name', $category)->first();
+        if ($categories) {
+            $products = $categories->product()->get();
+            return view('home.product', compact('products', 'categories'));
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function favorite()
+    {
+        $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
+        $products = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
+        $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
+
+        $users = User::all();
+        return view('home.favorite', ['carts' => $carts, 'favorites' => $favorites, 'products' => $products]);
     }
 
 
@@ -49,7 +96,8 @@ class ProductController extends Controller
         /*     $products = Product::where('id', '=', $idx->id)->first(); */
         if (Auth::check()) {
             $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
-            return view('item', compact('products', 'carts'));
+            $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
+            return view('item', compact('products', 'carts', 'favorites'));
         } else {
             return view('item', compact('products'));
         }
@@ -58,8 +106,9 @@ class ProductController extends Controller
     public function cart()
     {
         $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
+        $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
         $users = User::all();
-        return view('cart', ['carts' => $carts, 'users' => $users]);
+        return view('cart', ['carts' => $carts, 'users' => $users, 'favorites' => $favorites]);
     }
 
     public function remove($id)
@@ -73,8 +122,19 @@ class ProductController extends Controller
         });
         return  back()->with('success', 'Product removed successfully');
     }
+    public function removeFav($id)
+    {
+        $cart = Favorite::findOrFail($id);
+        $product = Product::where('name', '=', $cart->name)->first();
+        DB::transaction(function () use ($product, $cart) {
+            $product->stock = $product->stock + $cart->quantity;
+            $product->save();
+            $cart->delete();
+        });
+        return  back()->with('success', 'Favorite removed successfully');
+    }
 
-    public function addToCart($id,)
+    public function addToCart($id)
     {
         $users = User::find(auth()->user()->id);
         $product = Product::find($id);
@@ -96,6 +156,30 @@ class ProductController extends Controller
             $product->save();
         });
         return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
+    public function addToFav($id)
+    {
+        $users = User::find(auth()->user()->id);
+        $product = Product::find($id);
+        $cart = Favorite::where('name', '=', $product->name)->where('user_id', '=', auth()->user()->id)->first();
+        DB::transaction(function () use ($product, $cart, $users) {
+            if ($cart != null) {
+                $cart->quantity =  1;
+                $cart->save();
+            } else {
+                $cart = new Favorite();
+                $cart->user_id = $users->id;
+                $cart->name = $product->name;
+                $cart->quantity = 1;
+                $cart->price = $product->price;
+                $cart->image = $product->image;
+                $cart->save();
+            }
+            $product->stock = $product->stock - 1;
+            $product->save();
+        });
+        return redirect()->back()->with('success', 'Product added to Favorite successfully!');
     }
 
     public function addcountCart($id)
@@ -169,7 +253,8 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
-        return view('home.create', compact('products', 'carts'));
+        $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
+        return view('home.create', compact('products', 'carts', 'favorites'));
     }
 
     public function store(Request $request)
@@ -185,7 +270,7 @@ class ProductController extends Controller
         }
         $product->name = $request->input('name');
         $product->title = $request->input('title');
-        $product->category = $request->input('category');
+        $product->ProductCategoryID = $request->input('category');
         $product->description = $request->input('description');
         $product->stock = $request->input('stock');
         $product->price = $request->input('price');
@@ -213,7 +298,8 @@ class ProductController extends Controller
     {
         $products = Product::find($id);
         $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
-        return view('home.edit', compact('products', 'carts'));
+        $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
+        return view('home.edit', compact('products', 'carts', 'favorites'));
     }
 
     public function update(Request $request, $id)
@@ -223,6 +309,7 @@ class ProductController extends Controller
 
         $product->name = $request->input('name');
         $product->title = $request->input('title');
+        $product->ProductCategoryID = $request->get('category');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->stock = $request->input('stock');
