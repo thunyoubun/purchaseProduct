@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Database\Seeders\ProductSeeder;
 use Illuminate\Support\Facades\Route;
@@ -53,9 +54,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/myaccount', 'HomeController@myaccount')->name('myaccount');
 
 
+
+
+
         /*product*/
         Route::get('/add-item/{id}', 'ProductController@addcountCart')->name('add.item');
         Route::get('/remove-item/{id}', 'ProductController@removecountCart')->name('remove.item');
+
+
+
 
 
         Route::get('/cart', 'ProductController@cart')->name('cart');
@@ -70,6 +77,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     Route::middleware(['auth', 'is_admin'])->group(function () {
         Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
+        Route::put('update-account', [HomeController::class, 'update']);
 
         /*dashboard */
         Route::get('add-product', [ProductController::class, 'create']);

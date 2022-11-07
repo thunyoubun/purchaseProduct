@@ -46,7 +46,7 @@ class ProductController extends Controller
             $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
             return view('home.product', compact('products', 'carts', 'categories', 'favorites'));
         } else {
-            return view('home.product', compact('products'));
+            return view('home.product', compact('products', 'categories'));
         }
     }
 

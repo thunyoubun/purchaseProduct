@@ -19,8 +19,33 @@ class HomeController extends Controller
     public function myaccount()
     {
         $users = Auth::user();
-        $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
         $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
+        $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
         return view('home.myaccount', compact('users', 'carts', 'favorites'));
+    }
+
+    public function edit($id)
+    {
+
+        $users = User::find($id);
+        $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
+        $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
+        return view('home.edit_user', compact('users', 'carts', 'favorites'));
+    }
+
+    public function update(Request $request)
+    {
+
+        $auth = Auth::id();
+        $user = User::find($auth);
+
+        $user->name = $request->input('name');
+        $user->phone = $request->input('phone');
+        $user->email = $request->input('email');
+        $user->address = $request->input('address');
+        $user->password = $request->input('password');
+
+        $user->update();
+        return redirect()->route('home.myaccount')->with('success', 'Account updated successfully');
     }
 }

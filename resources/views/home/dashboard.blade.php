@@ -4,8 +4,8 @@
 @if(auth()->user()->role == 'admin')
 <div class="container ">
 
-    <nav class="mt-4 d-flex justify-content-center">
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <nav class="mt-4 d-flex justify-content-start">
+        <div class="nav nav-tabs ml-4 " id="nav-tab" role="tablist">
             <a class="nav-item nav-link active font-weight-bold " id="nav-user-tab" data-toggle="tab" href="#nav-user"
                 role="tab" aria-controls="nav-user" aria-selected="true">User</a>
             <a class="nav-item nav-link font-weight-bold " id="nav-product-tab" data-toggle="tab" href="#nav-product"
@@ -14,8 +14,8 @@
     </nav>
     <div class="tab-content" id="nav-tabContent">
 
-        <div class="tab-pane fade row m-2" id="nav-product" role="tabpanel" aria-labelledby="nav-product-tab">
-            <div class="col-md-12">
+        <div class="tab-pane fade row m-2 " id="nav-product" role="tabpanel" aria-labelledby="nav-product-tab">
+            <div class=" col-md-12">
                 <div class="card bg-light">
                     <div class="card-header">
                         <h4>Product

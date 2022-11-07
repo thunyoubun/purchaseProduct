@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-body">
 
-                    <form action="{{ url('update-user/'.$users->id) }}" method="POST">
+                    <form action="{{ url('edit-user/'.$user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="">Email</label>
-                            <input type="integer" name="email" value="{{$users->email}}" class="form-control">
+                            <input type="string" name="email" value="{{$users->email}}" class="form-control">
                         </div>
                         <div class="form-group mb-3">
                             <label for="">Password</label>

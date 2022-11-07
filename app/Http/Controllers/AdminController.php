@@ -73,6 +73,6 @@ class AdminController extends Controller
         $user->password = $request->input('password');
 
         $user->update();
-        return redirect()->route('dashboard')->with('success', 'Product updated successfully');
+        return redirect()->route('dashboard')->with('success', 'User updated successfully');
     }
 }

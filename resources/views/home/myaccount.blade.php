@@ -84,20 +84,104 @@
                                     </div>
 
 
-                                    <div class="bg-light p-4" style="width: 100%;">
+                                    <button type="button" class="btn bg-light p-4" data-toggle="modal"
+                                        data-target="#exampleModalCenter" style="width: 100%;">
                                         <div class="container ">
 
-                                            <a href="" class="d-flex font-weight-bold fs-6 text-decoration-none"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" width="23" height="23"
+                                            <div class="d-flex text-primary font-weight-bold fs-6 text-decoration-none">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
                                                     fill="currentColor" class="bi bi-pencil-square mr-2"
                                                     viewBox="0 0 16 16">
                                                     <path
                                                         d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                                                     <path fill-rule="evenodd"
                                                         d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                                </svg><span>แก้ไขข้อมูลส่วนตัว</span></a>
+                                                </svg><span>แก้ไขข้อมูลส่วนตัว</span>
+                                            </div>
                                         </div>
 
+                                    </button>
+
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-primary" id="exampleModalLongTitle">Edit
+                                                        Account</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+
+                                                                @if (session('status'))
+                                                                <h6 class="alert alert-success">{{ session('status') }}
+                                                                </h6>
+                                                                @endif
+
+                                                                <div class="">
+
+                                                                    <div class="">
+
+                                                                        <form
+                                                                            action="{{ url('update-account',$users->id) }}"
+                                                                            method="POST">
+                                                                            @csrf
+                                                                            @method('PUT')
+
+                                                                            <div class="form-group mb-3">
+                                                                                <label for="">Name</label>
+                                                                                <input type="string" name="name"
+                                                                                    value="{{$users->name}}"
+                                                                                    class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group mb-3">
+                                                                                <label for="">Email</label>
+                                                                                <input type="string" name="email"
+                                                                                    value="{{$users->email}}"
+                                                                                    class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group mb-3">
+                                                                                <label for="">Tel.</label>
+                                                                                <input type="string" name="phone"
+                                                                                    value="{{$users->phone}}"
+                                                                                    class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group mb-3">
+                                                                                <label for="">Address</label>
+                                                                                <input type="string" name="address"
+                                                                                    value="{{$users->address}}"
+                                                                                    class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group mb-3">
+                                                                                <label for="">Password</label>
+                                                                                <input type="password" name="password"
+                                                                                    class="form-control" require>
+                                                                            </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="form-group mb-3">
+                                                        <button type="submit" class="btn btn-primary">Update
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 

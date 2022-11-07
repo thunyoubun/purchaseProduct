@@ -119,7 +119,7 @@
 
     </main>
 
-    <!--     @include('layouts.partials.footer') -->
+
 
 
     <script src="{!! url('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
