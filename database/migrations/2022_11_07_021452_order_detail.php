@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->integer('order_id');
             $table->integer('user_id');
-            $table->interger('product_id');
+            $table->integer('product_id');
             $table->timestamps();
         });
     }

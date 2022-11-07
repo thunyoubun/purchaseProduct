@@ -246,7 +246,7 @@
 
                         <div class="carousel-item active d-flex justify-content-center text-center bg-white gap-3 ">
                             @foreach($products as $product)
-                            @if($product->id <= 5 && $product->ProductCategoryID == 2) <div
+                            @if($product->id <= 15 && $product->id > 10 && $product->ProductCategoryID == 2) <div
                                     class=" position-relative h-100  " style="width: 202px;">
                                     <div class="w-100">
                                         <div class="d-block ">
@@ -319,7 +319,7 @@
                         <!--2-->
                         <div class="carousel-item active d-flex justify-content-center text-center bg-white gap-3 ">
                             @foreach($products as $product)
-                            @if($product->id > 5 && $product->id <= 10 && $product->ProductCategoryID == 2)
+                            @if($product->id > 15 && $product->id <= 20 && $product->ProductCategoryID == 2)
                                 <div class=" position-relative h-100  " style="width: 202px;">
                                     <div class="w-100">
                                         <div class="d-block ">
@@ -412,10 +412,11 @@
 
             </div>
         </div>
+
         <!--MG-News-->
         <div class="container bg-white shadow-lg mt-3 mb-3">
             <div class="container p-4">
-                <a href="{{url('product')}}" class="text-primary text-decoration-none d-flex justify-content-center ">
+                <a href="{{route('product')}}" class="text-primary text-decoration-none d-flex justify-content-center ">
                     <p class="fs-5 font-weight-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor"
                             class="bi bi-columns-gap" viewBox="0 0 16 16">
@@ -425,26 +426,26 @@
                         Manga แนะนำ
                     </p>
                 </a>
-                <div id="carouselExampleFade3" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div id="carouselExampleFade4" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner  d-flex">
                         <!--1-->
 
                         <!-- @php $total = 0
-                    @endphp
-                    @foreach( $products as $product )
-                    @php $total += 1
-                    @endphp
-                    @endforeach -->
+                        @endphp
+                        @foreach( $products as $product )
+                        @php $total += 1
+                        @endphp
+                        @endforeach -->
 
                         <div class="carousel-item active d-flex justify-content-center text-center bg-white gap-3 ">
                             @foreach($products as $product)
-                            @if($product->id > 10 && $product->id <= 15 && $product->ProductCategoryID == 1 ) <div
+                            @if($product->id >= 1 && $product->id <= 5 && $product->ProductCategoryID == 1) <div
                                     class=" position-relative h-100  " style="width: 202px;">
                                     <div class="w-100">
                                         <div class="d-block ">
-                                            <div class=" text-decoration-none text-dark text-center alight-cnter "
+                                            <div class="position-relative text-decoration-none text-dark text-center alight-cnter "
                                                 alt="">
-                                                <a href="{{ route('add.to.fav', $product->id) }}" class="">
+                                                <a href="{{ route('add.to.fav', $product->id) }}">
                                                     <span class=" fav rounded-circle shadow"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="23" height="23"
                                                             fill="currentColor" class="bi bi-heart-fill"
@@ -480,16 +481,14 @@
                                                 <a href="{{route('item', $product->id)}}" class=" d-block text-decoration-none text-truncate text-wrap text-center
                                             lh-sm text-center w-100 overflow-hidden ">
                                                     <p class="tile-name">
-
                                                         {{ $product->name }}
-
                                                     </p>
                                                 </a>
 
                                             </div>
                                         </div>
                                         <div class="d-block  ">
-                                            <a href="{{ route('add.to.cart', $product->id) }}">
+                                            <a href="{{ route('add.to.cart', $product->id ) }}">
                                                 <button type="button" class="btn btn-outline-primary "
                                                     style=" width:100%;">
                                                     <div class="d-flex align-items-center justify-content-center">
@@ -513,44 +512,44 @@
                         <!--2-->
                         <div class="carousel-item active d-flex justify-content-center text-center bg-white gap-3 ">
                             @foreach($products as $product)
-                            @if($product->id >15 && $product->ProductCategoryID == 1)
-                            <div class=" position-relative h-100  " style="width: 202px;">
-                                <div class="w-100">
-                                    <div class="d-block ">
-                                        <div class="position-relative text-decoration-none text-dark text-center alight-cnter "
-                                            alt="">
-                                            <a href="{{ route('add.to.fav', $product->id) }}" class="">
-                                                <span class=" fav rounded-circle shadow"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="23" height="23"
-                                                        fill="currentColor" class="bi bi-heart-fill"
-                                                        viewBox="0 0 16 16">
-                                                        <path fill-rule="evenodd"
-                                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                                    </svg>
-                                                </span>
-                                            </a>
-                                            <div>
-                                                <a href="{{route('item', $product->id)}} "
-                                                    class="text-decoration-none text-white d-flex justify-content-center">
-                                                    <figure class="cardt text-decoration-none">
-                                                        <img src="{{ asset('assets/products') }}/{{$product->image}}"
-                                                            class="" style="width:143px; height:202px">
-                                                        <figcaption
-                                                            class="d-flex align-items-center bg-white bg-opacity-75 ">
-                                                            <button
-                                                                class=" btn btn-dark d-flex justify-content-center  fs-6 rounded"
-                                                                style="width:100px">
-                                                                <div class="font-weight-bolder fs-6 lh-1 text-wrap"
-                                                                    style="max-width: 50px;">
-                                                                    Quick View
-                                                                </div>
-                                                            </button>
-                                                        </figcaption>
-                                                    </figure>
+                            @if($product->id > 5 && $product->id <= 10 && $product->ProductCategoryID == 1)
+                                <div class=" position-relative h-100  " style="width: 202px;">
+                                    <div class="w-100">
+                                        <div class="d-block ">
+                                            <div class="position-relative text-decoration-none text-dark text-center alight-cnter "
+                                                alt="">
+                                                <a href="{{ route('add.to.fav', $product->id) }}" class="">
+                                                    <span class=" fav rounded-circle shadow"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="23" height="23"
+                                                            fill="currentColor" class="bi bi-heart-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd"
+                                                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                        </svg>
+                                                    </span>
                                                 </a>
-                                            </div>
+                                                <div>
+                                                    <a href="{{route('item', $product->id)}} "
+                                                        class="text-decoration-none text-white d-flex justify-content-center">
+                                                        <figure class="cardt text-decoration-none">
+                                                            <img src="{{ asset('assets/products') }}/{{$product->image}}"
+                                                                class="" style="width:143px; height:202px">
+                                                            <figcaption
+                                                                class="d-flex align-items-center bg-white bg-opacity-75 ">
+                                                                <button
+                                                                    class=" btn btn-dark d-flex justify-content-center  fs-6 rounded"
+                                                                    style="width:100px">
+                                                                    <div class="font-weight-bolder fs-6 lh-1 text-wrap"
+                                                                        style="max-width: 50px;">
+                                                                        Quick View
+                                                                    </div>
+                                                                </button>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </a>
+                                                </div>
 
-                                            </a>
+                                            </div>
                                             <div class="d-block mt-1 mb-1   text-left"
                                                 style="max-width: 100%; height:60px">
                                                 <a href="{{route('item', $product->id)}}"
@@ -563,7 +562,7 @@
                                             </div>
                                         </div>
                                         <div class="d-block bottom-0 ">
-                                            <a href="{{ route('add.to.cart', $product->id) }}">
+                                            <a href="{{ route('add.to.cart',$product->id) }}">
                                                 <button type="button" class="btn btn-outline-primary "
                                                     style=" width:100%;">
                                                     <div class="d-flex align-items-center justify-content-center">
@@ -585,26 +584,26 @@
                                 @endif
                                 @endforeach
 
-                            </div>
                         </div>
                         <button class="carousel-control-prev" style="width:100px" type="button"
-                            data-bs-target="#carouselExampleFade3" data-bs-slide="prev">
+                            data-bs-target="#carouselExampleFade4" data-bs-slide="prev">
                             <span
                                 class="carousel-control-prev-icon shadow-lg border border-5 border-dark bg-dark rounded-circle"
                                 aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" style="width:100px" type="button"
-                            data-bs-target="#carouselExampleFade3" data-bs-slide="next">
+                            data-bs-target="#carouselExampleFade4" data-bs-slide="next">
                             <span
                                 class="carousel-control-next-icon shadow-lg border border-5 border-dark bg-dark rounded-circle"
                                 aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-                </div>
-            </div>
 
+                </div>
+
+            </div>
         </div>
     </div>
     <!-- @guest -->
