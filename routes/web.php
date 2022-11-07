@@ -55,14 +55,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
 
 
-
-
         /*product*/
         Route::get('/add-item/{id}', 'ProductController@addcountCart')->name('add.item');
         Route::get('/remove-item/{id}', 'ProductController@removecountCart')->name('remove.item');
-
-
-
+        /*user */
+        Route::get('edit-account/{id}', [HomeController::class, 'edit']);
+        Route::put('update-account/{id}', [HomeController::class, 'update']);
 
 
         Route::get('/cart', 'ProductController@cart')->name('cart');

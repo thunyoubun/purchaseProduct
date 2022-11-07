@@ -30,7 +30,7 @@ class HomeController extends Controller
         $users = User::find($id);
         $favorites = DB::table("favorites")->where('user_id', '=', auth()->user()->id)->get();
         $carts = DB::table("carts")->where('user_id', '=', auth()->user()->id)->get();
-        return view('home.edit_user', compact('users', 'carts', 'favorites'));
+        return view('home.edit_account', compact('users', 'carts', 'favorites'));
     }
 
     public function update(Request $request)
@@ -46,6 +46,6 @@ class HomeController extends Controller
         $user->password = $request->input('password');
 
         $user->update();
-        return redirect()->route('home.myaccount')->with('success', 'Account updated successfully');
+        return redirect()->route('myaccount')->with('success', 'Account updated successfully');
     }
 }
