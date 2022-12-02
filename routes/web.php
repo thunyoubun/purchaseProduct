@@ -39,6 +39,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     Route::get('/', 'ProductController@index')->name('home.index');
     Route::get('/item/{id}', 'ProductController@item')->name('item');
+    Route::get('/product-list', 'ProductController@productList')->name('productList');
+    Route::post('/searchproduct', 'ProductController@searchProduct')->name('searchProduct');
 
 
     Route::get('product', [ProductController::class, 'all'])->name('product');
@@ -52,7 +54,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
         Route::get('/myaccount', 'HomeController@myaccount')->name('myaccount');
-
 
 
         /*product*/

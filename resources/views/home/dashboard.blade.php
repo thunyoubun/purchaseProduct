@@ -59,7 +59,7 @@
                                     <td>{{ $item->stock }}</td>
                                     <td>{{ $item->price }}</td>
                                     <td>
-                                        <a href="{{url('edit-product/'. $item->id)}}"
+                                        <!-- <a href="{{url('edit-product/'. $item->id)}}"
                                             class="btn btn-success btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
                                                 width="23" height="23" fill="currentColor" class="bi bi-pencil-square"
                                                 viewBox="0 0 16 16">
@@ -67,7 +67,120 @@
                                                     d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                                                 <path fill-rule="evenodd"
                                                     d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                            </svg></a>
+                                            </svg></a> -->
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                            data-target="#exampleModalCenter1">
+                                            <div class="container ">
+                                                <div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
+                                                        fill="currentColor" class="bi bi-pencil-square"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </button>
+
+                                        <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-primary" id="exampleModalLongTitle">
+                                                            Edit
+                                                            Account</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+
+                                                                    @if (session('status'))
+                                                                    <h6 class="alert alert-success">
+                                                                        {{ session('status') }}
+                                                                    </h6>
+                                                                    @endif
+
+                                                                    <div class="">
+
+                                                                        <div class="">
+
+                                                                            <form
+                                                                                action="{{ url('update-product/'.$item->id) }}"
+                                                                                method="POST"
+                                                                                enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                @method('PUT')
+
+                                                                                <div class="form-group mb-3">
+                                                                                    <label for="">Name</label>
+                                                                                    <input type="string" name="name"
+                                                                                        value="{{$item->name}}"
+                                                                                        class="form-control">
+                                                                                </div>
+                                                                                <div class="form-group mb-3">
+                                                                                    <label for="">Title</label>
+                                                                                    <input type="string" name="title"
+                                                                                        value="{{$item->title}}"
+                                                                                        class="form-control">
+                                                                                </div>
+                                                                                <div class="form-group mb-3">
+                                                                                    <label
+                                                                                        for="category">Category</label>
+                                                                                    <select name="category"
+                                                                                        class="form-select"
+                                                                                        type="integer"
+                                                                                        aria-label="Default select example"
+                                                                                        placeholder="Select category...">
+                                                                                        <option value="2">LN</option>
+                                                                                        <option value="1">MG</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group mb-3">
+                                                                                    <label for="">Description</label>
+                                                                                    <input type="text"
+                                                                                        name="description"
+                                                                                        value="{{$item->description}}"
+                                                                                        class="form-control">
+                                                                                </div>
+                                                                                <div class="form-group mb-3">
+                                                                                    <label for="">Image</label>
+                                                                                    <input type="file" name="image"
+                                                                                        class="form-control">
+
+                                                                                </div>
+                                                                                <div class="form-group mb-3">
+                                                                                    <label for="">Stock</label>
+                                                                                    <input type="integer" name="stock"
+                                                                                        value="{{$item->stock}}"
+                                                                                        class="form-control">
+                                                                                </div>
+                                                                                <div class="form-group mb-3">
+                                                                                    <label for="">Price</label>
+                                                                                    <input type="decimal" name="price"
+                                                                                        value="{{$item->price}}"
+                                                                                        class="form-control">
+                                                                                </div>
+                                                                                <div class="form-group mb-3">
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-primary">Update
+                                                                                        Product</button>
+                                                                                </div>
+
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
                                     </td>
                                     <td>
                                         <form action="{{ url('delete-product/'.$item->id) }}" method="POST">
@@ -127,14 +240,107 @@
 
 
                                     <td>
-                                        <a href="{{ url('edit-user/'.$user->id) }}" class="btn btn-success btn-sm"><svg
+                                        <!-- <a href="{{ url('edit-user/'.$user->id) }}" class="btn btn-success btn-sm"><svg
                                                 xmlns="http://www.w3.org/2000/svg" width="23" height="23"
                                                 fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                 <path
                                                     d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                                                 <path fill-rule="evenodd"
                                                     d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                            </svg></a>
+                                            </svg></a> -->
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                            data-target="#exampleModalCenter3">
+                                            <div class="container ">
+                                                <div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
+                                                        fill="currentColor" class="bi bi-pencil-square"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-primary" id="exampleModalLongTitle">
+                                                            Edit
+                                                            Account</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+
+                                                                    @if (session('status'))
+                                                                    <h6 class="alert alert-success">
+                                                                        {{ session('status') }}
+                                                                    </h6>
+                                                                    @endif
+
+                                                                    <div class="">
+
+                                                                        <div class="">
+
+                                                                            <form
+                                                                                action="{{ url('update-user/'.$user->id) }}"
+                                                                                method="POST">
+                                                                                @csrf
+                                                                                @method('PUT')
+
+                                                                                <div class="form-group mb-3">
+                                                                                    <label for="">Name</label>
+                                                                                    <input type="string" name="name"
+                                                                                        value="{{$user->name}}"
+                                                                                        class="form-control">
+                                                                                </div>
+                                                                                <div class="form-group mb-3">
+                                                                                    <label for="role">Role</label>
+                                                                                    <select name="role" id="role"
+                                                                                        class="form-select"
+                                                                                        require="required">
+                                                                                        <option value="admin">admin
+                                                                                        </option>
+                                                                                        <option value="client">client
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group mb-3">
+                                                                                    <label for="">Email</label>
+                                                                                    <input type="string" name="email"
+                                                                                        value="{{$user->email}}"
+                                                                                        class="form-control">
+                                                                                </div>
+                                                                                <div class="form-group mb-3">
+                                                                                    <label for="">Password</label>
+                                                                                    <input type="password"
+                                                                                        name="password"
+                                                                                        class="form-control" require>
+                                                                                </div>
+                                                                                <div class="form-group mb-3">
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-primary">Update
+                                                                                        User</button>
+                                                                                </div>
+
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
                                     </td>
                                     <td><a href="{{ url('delete-user/'.$user->id) }}" class="btn btn-danger btn-sm"><svg
                                                 xmlns="http://www.w3.org/2000/svg" width="23" height="23"
@@ -151,6 +357,8 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>
 @endif

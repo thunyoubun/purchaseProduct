@@ -21,6 +21,7 @@
 }
 
 .box {
+    position: relative;
     max-width: 450px;
     width: 100%;
     background-color: white;
@@ -50,8 +51,21 @@
 
 }
 
+.search-box input:active {
+    border: none;
+}
+
 .search-box input::placeholder {
     color: royalblue;
+}
+
+.ui-menu {
+    position: absolute;
+    border: 2px;
+    border-radius: 5px;
+    color: royalblue;
+    padding-top: 5px;
+
 }
 
 .search-box button {
@@ -122,15 +136,18 @@
             </div>
             <!--Serch -->
             <div class="box col d-none d-sm-block  " style="max-width: 450px;">
-                <div class="search-box">
-                    <input style="background-color:white;color:royalblue; " class="	" type="search"
-                        placeholder="Search">
-                    <button class="btn-search" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                            height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path
-                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                        </svg></button>
-                </div>
+                <form action="{{ url('searchproduct')}}" method="POST">
+                    @csrf
+                    <div class="search-box">
+                        <input style="background-color:white;color:royalblue; " name="product_name" id="search_product"
+                            type="search" placeholder="Search">
+                        <button class="btn-search" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg></button>
+                    </div>
+                </form>
 
             </div>
 

@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-body">
 
-                    <form action="{{ url('edit-user/'.$user->id) }}" method="POST">
+                    <form action="{{ url('update-user/'.$users->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 

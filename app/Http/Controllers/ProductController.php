@@ -345,4 +345,32 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('dashboard')->with('success', 'Product deleted successfully');
     }
+
+    public function productList()
+    {
+        $products = Product::select('name')->get();
+        $data = [];
+
+        foreach ($products as $product) {
+            $data[] = $product['name'];
+        }
+
+        return $data;
+    }
+
+    public function searchProduct(Request $request)
+    {
+        $searched_product = $request->product_name;
+
+        if ($searched_product != "") {
+            $product = Product::where("name", "LIKE", "%$searched_product%")->first();
+            if ($product) {
+                return redirect('item/' . $product->id);
+            } else {
+                return redirect()->back()->with('fail', "Product's name not found!");
+            }
+        } else {
+            return redirect()->back();
+        }
+    }
 }
